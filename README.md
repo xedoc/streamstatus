@@ -1,4 +1,4 @@
 streamstatus
 ============
 
-Live stream status (own3d.tv, twitch.tv)
+Live stream info for twitch.tv.
