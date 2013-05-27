@@ -1,21 +1,21 @@
 <?php
-require_once('api_twitch.php');
-require_once('api_own3d.php');
-
-$ownChannel = '340254';
-$twitchChannel = 'tsm_dyrus';
-
-$own = new Own3dChannel($ownChannel);
+//require_once('api_twitch.php'); //Justin.tv API
+require_once('api_twitchv2.php'); //Twitch.tv API
+$twitchChannel = 'achiedetectedhd';
 $twitch = new TwitchChannel($twitchChannel);
 
 echo 'Property dump:<br>';
-
-foreach($own as $property => $value) {
-    echo "\$own.$property = ".htmlspecialchars($value)."<br>";
+foreach(object2array($twitch) as $property => $value) {
+    echo "\$twitch.".$property." = ".$value."</br>";
 }
 
-foreach($twitch as $property => $value) {
-    echo "\$twitch.$property = ".htmlspecialchars($value)."<br>";
-}
+function object2array($obj) { 
+    $_arr = is_object($obj) ? get_object_vars($obj) : $obj; 
+    foreach ($_arr as $key => $val) { 
+        $val = (is_array($val) || is_object($val)) ? object2array($val) : $val; 
+        $arr[$key] = $val; 
+    } 
+    return $arr; 
+}  
 
 ?>
